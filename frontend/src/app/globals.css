@@ -1,0 +1,174 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #07070f;
+  --foreground: #f8f4e8;
+  --eob-ink: #07070f;
+  --eob-panel: #10101d;
+  --eob-panel-2: #17142a;
+  --eob-lime: #24f59f;
+  --eob-cyan: #39e8ff;
+  --eob-pink: #ff2f92;
+  --eob-violet: #8b5cf6;
+  --eob-yellow: #ffe84d;
+  --eob-orange: #ff9f1c;
+  --eob-line: rgba(255, 255, 255, 0.12);
+  --font-display: var(--font-geist-sans), "Space Grotesk", "Arial Black", system-ui, sans-serif;
+  --font-arcade: var(--font-geist-mono), "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  color: var(--foreground);
+  background:
+    radial-gradient(circle at 12% 8%, rgba(255, 47, 146, 0.22), transparent 28rem),
+    radial-gradient(circle at 84% 12%, rgba(36, 245, 159, 0.18), transparent 26rem),
+    radial-gradient(circle at 50% 92%, rgba(139, 92, 246, 0.22), transparent 30rem),
+    var(--background);
+  font-family: var(--font-display);
+  min-height: 100dvh;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+::selection {
+  color: #07070f;
+  background: var(--eob-lime);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0814;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--eob-pink), var(--eob-violet), var(--eob-lime));
+  border: 2px solid #0a0814;
+  border-radius: 999px;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .font-arcade {
+    font-family: var(--font-arcade);
+  }
+
+  .text-stroke-soft {
+    text-shadow:
+      2px 2px 0 #000,
+      -1px 1px 0 rgba(0, 0, 0, 0.65),
+      0 0 24px rgba(36, 245, 159, 0.22);
+  }
+
+  .arcade-grid {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px);
+    background-size: 72px 72px;
+  }
+
+  .arcade-grid-room {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+    background-size: 76px 76px;
+  }
+
+  .scanline {
+    position: relative;
+  }
+
+  .scanline::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.035) 0,
+      rgba(255, 255, 255, 0.035) 1px,
+      transparent 1px,
+      transparent 8px
+    );
+    mix-blend-mode: overlay;
+  }
+
+  .neon-panel {
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.105), rgba(255, 255, 255, 0.025)),
+      rgba(10, 10, 22, 0.82);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow:
+      0 24px 70px rgba(0, 0, 0, 0.42),
+      inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(22px);
+  }
+
+  .hard-shadow {
+    box-shadow: 7px 7px 0 #000;
+  }
+
+  .hard-shadow-sm {
+    box-shadow: 4px 4px 0 #000;
+  }
+
+  .eob-button {
+    border: 2px solid #000;
+    box-shadow: 5px 5px 0 #000;
+    transition: transform 160ms ease, box-shadow 160ms ease, filter 160ms ease;
+  }
+
+  .eob-button:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0 #000;
+    filter: saturate(1.18);
+  }
+
+  .eob-button:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 #000;
+  }
+
+  .orbital-glow {
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.08),
+      0 0 38px rgba(36, 245, 159, 0.18),
+      0 0 80px rgba(255, 47, 146, 0.12);
+  }
+
+  .noise-mask {
+    position: relative;
+  }
+
+  .noise-mask::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.25;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.28) 0 1px, transparent 1px),
+      radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.18) 0 1px, transparent 1px);
+    background-size: 28px 28px, 36px 36px;
+    mix-blend-mode: overlay;
+  }
+}
